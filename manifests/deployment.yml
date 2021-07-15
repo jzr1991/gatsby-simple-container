@@ -4,7 +4,6 @@ metadata:
   labels:
     app: gatsby-app
   name: gatsby-app
-  namespace: finestorm
 spec:
   replicas: 2
   selector:
