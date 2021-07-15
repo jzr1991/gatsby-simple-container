@@ -16,5 +16,5 @@ spec:
         app: gatsby-app
     spec:
       containers:
-      - image: quay.io/pne_roberts/gatsby-simple-container:b05d53f
+      - image: quay.io/pne_roberts/gatsby-simple-container:ba23da4
         name: gatsby-simple-container
