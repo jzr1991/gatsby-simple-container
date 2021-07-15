@@ -1,4 +1,4 @@
-FROM registry.access.redhat.com/ubi7/nodejs-14:latest
+FROM node:14.17-buster
 
 ENV NODE_ENV production
 ENV PORT 3000
