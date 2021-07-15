@@ -1,5 +1,6 @@
 FROM node:14.17-buster-slim
 
+RUN apk add --no-cache python3 py3-pip
 # set working directory
 WORKDIR /app
 
