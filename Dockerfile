@@ -1,4 +1,5 @@
-FROM node:14.17-buster as builder
+FROM node:14-alpine3.14
+
 USER root
 # set working directory
 WORKDIR /app
