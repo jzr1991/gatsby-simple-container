@@ -1,6 +1,6 @@
 FROM node:14.17-buster-slim
 
-RUN apt-get update && apt-get install -y python3
+RUN apt-get update && apt-get install -y python3 build-essential
 # set working directory
 WORKDIR /app
 
