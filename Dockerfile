@@ -1,6 +1,6 @@
 FROM node:14.17-buster-slim
 
-RUN apt-get update && apt-get install -y python3 build-essential
+RUN apt-get update && apt-get install -y python3 build-essential autoconf automake
 # set working directory
 WORKDIR /app
 
