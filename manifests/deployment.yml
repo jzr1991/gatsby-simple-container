@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: gatsby-app
+  name: gatsby-app
+  namespace: poprocks
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: gatsby-app
+  template:
+    metadata:
+      labels:
+        app: gatsby-app
+    spec:
+      containers:
+      - image: quay.io/pne_roberts/gatsby-simple-container:b05d53f
+        name: gatsby-simple-container
