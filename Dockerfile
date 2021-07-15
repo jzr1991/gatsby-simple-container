@@ -1,6 +1,5 @@
-FROM node:14-alpine3.14
+FROM node:14.17-buster-slim
 
-RUN apk add --no-cache autoconf
 # set working directory
 WORKDIR /app
 
