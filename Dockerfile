@@ -1,6 +1,6 @@
 FROM node:14.17-buster-slim
 
-RUN apk add --no-cache python3 py3-pip
+RUN apt-get update && apt-get install -y python3
 # set working directory
 WORKDIR /app
 
