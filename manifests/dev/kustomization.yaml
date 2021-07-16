@@ -3,5 +3,4 @@ resources:
 
 patchesStrategicMerge:
   - deployment.yml
-
-namePrefix: dev-
+  - ingress.yml

@@ -1,0 +1,9 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: gatsby-app
+spec:
+  tls:
+  - hosts:
+    - gatsby-app-dev.k8s.local
+    secretName: gatsby-app-dev-tls
