@@ -30,7 +30,7 @@ jobs:
           rm ingress.yml
           rm kustomize
           cd ../
-          echo -e "\n - test" >> kustomization.yaml
+          echo -e "\n - test-${{github.sha}}" >> kustomization.yaml
       - name: Commit new stuff
         run: |
           git config --local user.name "github-actions[bot]"
