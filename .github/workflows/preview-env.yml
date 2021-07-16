@@ -25,7 +25,7 @@ jobs:
           pwd
           curl -s "https://raw.githubusercontent.com/kubernetes-sigs/kustomize/master/hack/install_kustomize.sh"  | bash
           kustomize edit set image quay.io/pne_roberts/gatsby-simple-container:${{github.sha}}
-          kustomize edit set nameprefix ${{github.head_ref}}
+          kustomize edit set nameprefix test-
           kustomize edit remove resource ingress.yml
           rm ingress.yml
           rm kustomize
