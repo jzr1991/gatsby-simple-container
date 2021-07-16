@@ -8,23 +8,36 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    container: k8s.gcr.io/kustomize/kustomize:v3.8.7
     steps:
       - uses: actions/checkout@v2
         with:
           repository: jzr1991/gatsby-simple-container-config
+          token: ${{secrets.API_TOKEN_GH}}
       - name: Create preview environment
         run: |
-          cp -R gatsby-app/dev gatsby-app/${{github.head_ref}}
-          cd gatsby-app/${{github.head_ref}}
-          rm ingress.yml
+          cd $GITHUB_WORKSPACE
+          ls -la
+          mkdir gatsby-app/test-${{github.sha}}
+          cp -R gatsby-app/dev/* gatsby-app/test-${{github.sha}}
+          ls -la
+          cd gatsby-app/test-${{github.sha}}
+          ls -la
+          pwd
+          curl -s "https://raw.githubusercontent.com/kubernetes-sigs/kustomize/master/hack/install_kustomize.sh"  | bash
           kustomize edit set image quay.io/pne_roberts/gatsby-simple-container:${{github.sha}}
-          kustomize edit set nameprefix {{github.head_ref}}
+          kustomize edit set nameprefix test-
+          kustomize edit remove resource ingress.yml
+          rm ingress.yml
+          rm kustomize
           cd ../
-          echo '\n - test' >> gatsby-app/kustomization.yaml
+          echo -e "\n - test-${{github.sha}}" >> kustomization.yaml
       - name: Commit new stuff
         run: |
-          git config --global user.name 'Jack Roberts'
-          git config --global user.email 'jzr1991@users.noreply.github.com'
-          git commit -am "Automated report [skip ci]"
-          git push
+          git config --local user.name "github-actions[bot]"
+          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "PREVIEW ENVIRONMENT"
+          git push https://$USERNAME:$REPO_KEY@github.com/$USERNAME/gatsby-simple-container-config.git
+        env:
+          REPO_KEY: ${{secrets.API_TOKEN_GH}}
+          USERNAME: jzr1991
