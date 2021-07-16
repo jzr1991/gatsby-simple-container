@@ -1,7 +1,7 @@
 name: Docker Image CI
 
 on:
-  push:
+  pull_request:
     branches:
       - main
 
@@ -11,9 +11,6 @@ jobs:
 
     steps:
       - uses: actions/checkout@v1
-      - name: Get the version
-        id: vars
-        run: echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v1
       - name: Set up Docker Buildx
@@ -34,4 +31,4 @@ jobs:
           context: .
           platforms: linux/arm/v7
           push: true
-          tags: quay.io/pne_roberts/gatsby-simple-container:${{steps.vars.outputs.sha_short}}
+          tags: quay.io/pne_roberts/gatsby-simple-container:${{github.sha}}

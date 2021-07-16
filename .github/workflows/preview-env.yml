@@ -1,0 +1,30 @@
+name: Create preview environment
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container: k8s.gcr.io/kustomize/kustomize:v3.8.7
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          repository: jzr1991/gatsby-simple-container-config
+      - name: Create preview environment
+        run: |
+          cp -R gatsby-app/dev gatsby-app/${{github.head_ref}}
+          cd gatsby-app/${{github.head_ref}}
+          rm ingress.yml
+          kustomize edit set image quay.io/pne_roberts/gatsby-simple-container:${{github.sha}}
+          kustomize edit set nameprefix {{github.head_ref}}
+          cd ../
+          echo '\n - test' >> gatsby-app/kustomization.yaml
+      - name: Commit new stuff
+        run: |
+          git config --global user.name 'Jack Roberts'
+          git config --global user.email 'jzr1991@users.noreply.github.com'
+          git commit -am "Automated report [skip ci]"
+          git push
