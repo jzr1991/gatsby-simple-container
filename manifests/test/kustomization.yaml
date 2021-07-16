@@ -5,7 +5,6 @@ namespace: topknots-testing
 
 resources:
 - ../base
-- ingress.yml
 
 patchesStrategicMerge:
   - deployment.yml
