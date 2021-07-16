@@ -9,5 +9,5 @@ patchesStrategicMerge:
 - deployment.yml
 
 images:
-- name: https://quay.io/pne_roberts/gatsby-simple-container
+- name: quay.io/pne_roberts/gatsby-simple-container
   newTag: ec8f34c
