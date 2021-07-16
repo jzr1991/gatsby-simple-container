@@ -17,16 +17,17 @@ jobs:
       - name: Create preview environment
         run: |
           cd $GITHUB_WORKSPACE
-          ls -laR
+          ls -la
           mkdir gatsby-app/test-${{github.sha}}
           cp -R gatsby-app/dev/* gatsby-app/test-${{github.sha}}
-          ls -laR
+          ls -la
           cd gatsby-app/test-${{github.sha}}
-          ls -laR
+          ls -la
+          pwd
           /app/kustomize edit set image quay.io/pne_roberts/gatsby-simple-container:${{github.sha}}
           /app/kustomize edit set nameprefix {{github.head_ref}}
           cd ../
-          echo '\n - test' >> gatsby-app/kustomization.yaml
+          echo "\n - test" >> kustomization.yaml
       - name: Commit new stuff
         run: |
           git config --global user.name 'Jack Roberts'
