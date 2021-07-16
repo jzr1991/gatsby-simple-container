@@ -1,0 +1,23 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: gatsby-app
+  annotations:
+    cert-manager.io/cluster-issuer: selfsigned-cluster-issuer
+    kubernetes.io/ingress.class: nginx
+spec:
+  rules:
+  - host: gatsby-app.k8s.local
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service: 
+            name: gatsby-app-svc
+            port:
+              name: http
+  tls:
+  - hosts:
+    - gatsby-app.k8s.local
+    secretName: gatsby-app-tls
