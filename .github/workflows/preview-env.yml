@@ -26,8 +26,10 @@ jobs:
           curl -s "https://raw.githubusercontent.com/kubernetes-sigs/kustomize/master/hack/install_kustomize.sh"  | bash
           kustomize edit set image quay.io/pne_roberts/gatsby-simple-container:${{github.sha}}
           kustomize edit set nameprefix {{github.head_ref}}
+          rm ingress.yml
+          rm kustomize
           cd ../
-          echo "\n - test" >> kustomization.yaml
+          echo -e "\n - test" >> kustomization.yaml
       - name: Commit new stuff
         run: |
           git config --local user.name "github-actions[bot]"
