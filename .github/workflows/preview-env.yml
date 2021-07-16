@@ -8,8 +8,6 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    container: 
-      image: k8s.gcr.io/kustomize/kustomize:v3.8.7
     steps:
       - uses: actions/checkout@v2
         with:
@@ -24,8 +22,9 @@ jobs:
           cd gatsby-app/test-${{github.sha}}
           ls -la
           pwd
-          /app/kustomize edit set image quay.io/pne_roberts/gatsby-simple-container:${{github.sha}}
-          /app/kustomize edit set nameprefix {{github.head_ref}}
+          curl -s "https://raw.githubusercontent.com/kubernetes-sigs/kustomize/master/hack/install_kustomize.sh"  | bash
+          kustomize edit set image quay.io/pne_roberts/gatsby-simple-container:${{github.sha}}
+          kustomize edit set nameprefix {{github.head_ref}}
           cd ../
           echo "\n - test" >> kustomization.yaml
       - name: Commit new stuff
