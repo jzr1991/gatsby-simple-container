@@ -19,7 +19,7 @@ jobs:
           cd $GITHUB_WORKSPACE
           ls -laR
           mkdir gatsby-app/test-${{github.sha}}
-          cp -R gatsby-app/dev/ gatsby-app/test-${{github.sha}}
+          cp -R gatsby-app/dev/* gatsby-app/test-${{github.sha}}
           ls -laR
           cd gatsby-app/test-${{github.sha}}
           ls -laR
