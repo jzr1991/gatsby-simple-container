@@ -9,3 +9,5 @@ resources:
 
 patchesStrategicMerge:
   - deployment.yml
+
+namePrefix: prod-

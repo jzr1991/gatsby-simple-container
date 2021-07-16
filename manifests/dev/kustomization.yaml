@@ -13,3 +13,5 @@ patchesStrategicMerge:
 images:
 - name: quay.io/pne_roberts/gatsby-simple-container
   newTag: ec8f34c
+
+namePrefix: dev-
