@@ -18,7 +18,6 @@ jobs:
           mkdir $GITHUB_WORKSPACE/gatsby-app/test-${{github.sha}}
           cp -R $GITHUB_WORKSPACE/gatsby-app/dev/ $GITHUB_WORKSPACE/gatsby-app/test-${{github.sha}}
           cd $GITHUB_WORKSPACE/gatsby-app/test-${{github.sha}}
-          rm ingress.yml
           kustomize edit set image quay.io/pne_roberts/gatsby-simple-container:${{github.sha}}
           kustomize edit set nameprefix {{github.head_ref}}
           cd ../
