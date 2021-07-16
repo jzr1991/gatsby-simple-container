@@ -8,4 +8,4 @@ spec:
     port: 80
     targetPort: 5000
   selector:
-    app.kubernetes.io/name: gatsby-app
+    app: gatsby-app
