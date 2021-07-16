@@ -33,4 +33,7 @@ jobs:
           git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -A
           git commit -m "PREVIEW ENVIRONMENT"
-          git push https:://jzr1991:${{ secrets.API_TOKEN_GH }}@github.com/jzr1991/gatsby-simple-container-config.git
+          git push https:://$USERNAME:$REPO_KEY@github.com/$USERNAME/gatsby-simple-container-config.git
+        env:
+          REPO_KEY: ${{secrets.API_TOKEN_GH}}
+          USERNAME: jzr1991
