@@ -15,8 +15,8 @@ jobs:
           repository: jzr1991/gatsby-simple-container-config
       - name: Create preview environment
         run: |
-          cp -R gatsby-app/dev gatsby-app/${{github.head_ref}}
-          cd gatsby-app/${{github.head_ref}}
+          cp -R $GITHUB_WORKSPACE/gatsby-app/dev $GITHUB_WORKSPACE/gatsby-app/${{github.head_ref}}
+          cd $GITHUB_WORKSPACE/gatsby-app/${{github.head_ref}}
           rm ingress.yml
           kustomize edit set image quay.io/pne_roberts/gatsby-simple-container:${{github.sha}}
           kustomize edit set nameprefix {{github.head_ref}}
