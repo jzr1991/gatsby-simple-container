@@ -1,4 +1,3 @@
 resources:
   - deployment.yml
   - svc.yml
-  - ingress.yml
