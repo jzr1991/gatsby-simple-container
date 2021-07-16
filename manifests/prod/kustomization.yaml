@@ -1,0 +1,7 @@
+resources:
+- ../../base
+
+patchesStrategicMerge:
+  - deployment.yml
+
+namePrefix: prod-
