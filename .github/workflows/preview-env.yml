@@ -16,9 +16,13 @@ jobs:
           repository: jzr1991/gatsby-simple-container-config
       - name: Create preview environment
         run: |
-          mkdir $GITHUB_WORKSPACE/gatsby-app/test-${{github.sha}}
-          cp -R $GITHUB_WORKSPACE/gatsby-app/dev/ $GITHUB_WORKSPACE/gatsby-app/test-${{github.sha}}
-          cd $GITHUB_WORKSPACE/gatsby-app/test-${{github.sha}}
+          cd $GITHUB_WORKSPACE
+          ls -laR
+          mkdir gatsby-app/test-${{github.sha}}
+          cp -R gatsby-app/dev/ gatsby-app/test-${{github.sha}}
+          ls -laR
+          cd gatsby-app/test-${{github.sha}}
+          ls -laR
           /app/kustomize edit set image quay.io/pne_roberts/gatsby-simple-container:${{github.sha}}
           /app/kustomize edit set nameprefix {{github.head_ref}}
           cd ../
